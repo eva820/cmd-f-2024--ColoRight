@@ -6,4 +6,56 @@
     <h3>Testing page</h3>
 </div>
 
+<div id="testContainer">
+    <img src="" alt="Ishihara Test Image" id="ishiharaImage">
+    <input type="text" id="userAnswer" placeholder="Enter your answer here">
+    <button onclick="submitAnswer()">Submit</button>
+    <div id="feedback"></div>
+    <button onclick="nextImage()">Next</button>
+</div>
+
+<script>
+    let currentImageIndex = 0;
+    const images = [
+        'path/to/your/image1.png',
+        'path/to/your/image2.png',
+        // Add more image paths here
+    ];
+    const answerKey = [
+        { number: '12', description: 'Description for image 1' },
+        { number: '8', description: 'Description for image 2' },
+        // Add more answers with descriptions here
+    ];
+
+    window.onload = () => {
+        loadImage();
+    };
+
+    function loadImage() {
+        const imgElement = document.getElementById('ishiharaImage');
+        imgElement.src = images[currentImageIndex];
+    }
+
+    function submitAnswer() {
+        const userAnswer = document.getElementById('userAnswer').value;
+        const feedbackElement = document.getElementById('feedback');
+        if (userAnswer === answerKey[currentImageIndex].number) {
+            feedbackElement.textContent = 'Correct! ' + answerKey[currentImageIndex].description;
+        } else {
+            feedbackElement.textContent = 'Wrong. ' + answerKey[currentImageIndex].description;
+        }
+    }
+
+    function nextImage() {
+        currentImageIndex++;
+        if (currentImageIndex >= images.length) {
+            alert('You have reached the end of the test.');
+            currentImageIndex = 0; // Optionally reset the test or handle the end differently
+        }
+        loadImage();
+        document.getElementById('userAnswer').value = ''; // Clear the input box
+        document.getElementById('feedback').textContent = ''; // Clear the feedback
+    }
+</script>
+
 {% endblock %}
