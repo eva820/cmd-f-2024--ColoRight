@@ -1,0 +1,45 @@
+    <style>
+        .main-container {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #image-container {
+            margin: auto;
+            max-width: 80%;
+        }
+        img {
+            max-width: 100%;
+        }
+    </style>
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="main-container">
+        <h1>Paste Your Image Here</h1>
+        <div id="image-container">
+            <img id="pasted-image" src="#" alt="Pasted Image">
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('paste', function(event) {
+            var items = (event.clipboardData || event.originalEvent.clipboardData).items;
+            for (var index in items) {
+                var item = items[index];
+                if (item.kind === 'file') {
+                    var blob = item.getAsFile();
+                    var reader = new FileReader();
+                    reader.onload = function(event){
+                        var image = new Image();
+                        image.src = event.target.result;
+                        document.getElementById('image-container').innerHTML = '';
+                        document.getElementById('image-container').appendChild(image);
+                    };
+                    reader.readAsDataURL(blob);
+                }
+            }
+        });
+    </script>
+
+{% endblock %}
