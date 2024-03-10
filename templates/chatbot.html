@@ -1,17 +1,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+<style>
+</style>
 <div class="header">
-    <h3>Mock chatbot!</h3>
-    <div >
-        <div>
-            <p class="p-2">Hello, <br> What question do you have for me?</p> 
+    <h3>Chatbot</h3>
+    <div class="chatbot">
+        <div class="textbox">
+            <p class="msg-text">Hello, <br> What question do you have for me?</p> 
             {% for i in range(0,arg1) %} 
                 <div class="pl-5">
-                    <p class="p-2">{{arg2[i]}}</p> 
+                    <p class="msg-text">{{arg2[i]}}</p> 
                 </div>
-                <p class="p-2 mr-2" >{{arg0[i]}}</p> 
+                <p class="msg-text mr-2" >{{arg0[i]}}</p> 
             {% endfor %}        
         </div>
         <form id="chat" action="#" method="post" onsubmit="submitForm();">
