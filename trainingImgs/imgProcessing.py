@@ -4,7 +4,7 @@ import matplotlib.colors as mcolors
 from skimage import io
 from skimage.color import rgb2lab, deltaE_cie76
 
-for i in range(4,5):
+for i in range(1,6):
     filepath = f'map{i}.png'
     image = cv2.imread(filepath)
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -30,10 +30,8 @@ for i in range(4,5):
                 dist2 = np.linalg.norm(approx[0]-approx[3])
                 dist3 = np.linalg.norm(approx[0]-approx[1])
                 dist4 = np.linalg.norm(approx[2]-approx[3])
-                if abs(dist2-dist1)<=dist1*0.4 and abs(dist4-dist3)<=dist4*0.4:
+                if abs(dist2-dist1)<=dist1*0.2 and abs(dist4-dist3)<=dist4*0.2 and (max(dist4,dist2)/min(dist4,dist2) > 2.5):
                     rect_contours.append(approx)
-                    break
-
     cv2.drawContours(image, rect_contours, -1, (0, 255, 0), 2)
     resized_image = cv2.resize(image, (image.shape[1] // 2, image.shape[0] // 2))
     cv2.imshow('Rectangular Contours', resized_image)
@@ -50,18 +48,18 @@ for i in range(4,5):
     if img.shape[0]>img.shape[1]:
         # colorLine = np.mean(img,axis = 1).astype(int)
         colorLine = img[:,img.shape[1]//2,:]
-        print(colorLine)
+        # print(colorLine)
     else:
         # colorLine = np.mean(img,axis = 0).astype(int)
         colorLine = img[img.shape[0]//2,:,:]
-        print(colorLine)
+        # print(colorLine)
 
     samples = 19
     newcolor = []
     i = 0
     while(sum(colorLine[i])>=253*3):
         i=i+1
-        print(i)
+        # print(i)
     newcolor.append(colorLine[i])
     j = i
     for i in range(samples):
@@ -87,7 +85,6 @@ for i in range(4,5):
 
     colorHex = list(dict.fromkeys([rgb_to_hex(x) for x in colorLine]))
     colorLine = [hex_to_rgb(x) for x in colorHex]
-    print(colorLine)
 
     def jet_colormap(n,palet):
         if palet == 0:
@@ -103,11 +100,14 @@ for i in range(4,5):
     rgb = io.imread(filepath)[:,:,0:3]
     lab = rgb2lab(rgb)
 
+
+    print(colorLine[0])
     for i in range(0,len(colorLine)):
         color3d = np.uint8(np.asarray([[colorLine[i][::-1]]]))
         if i == 0:
-            print(colorLine[i])
-            colorPrev = np.uint8(np.asarray([[colorLine[i+1][::-1]]]))
+            # print(colorLine[i])
+            colorPrev = np.uint8(np.asarray([[[255,255,255]]]))
+            # colorPrev = np.uint8(np.asarray([[colorLine[i+1][::-1]]]))
         else:
             colorPrev = np.uint8(np.asarray([[colorLine[i-1][::-1]]]))
         thres = deltaE_cie76(rgb2lab(colorPrev),rgb2lab(color3d))*3//4
@@ -115,8 +115,6 @@ for i in range(4,5):
         if sum(colorLine[i])<250*3:
             rgb[colorDist<thres] = cmap[i]
 
-    whiteDist = deltaE_cie76(rgb2lab([[[255, 255, 255]]]), lab)
-    rgb[whiteDist<30] = [255,255,255]
     io.imshow(rgb)
     io.show()
 
