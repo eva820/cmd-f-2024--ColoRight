@@ -2,26 +2,89 @@
 
 {% block content %}
 <style>
+    .chatbot {
+        width: 100%;
+        height: 75vh;
+        vertical-align: bottom;
+        /* background-color: antiquewhite; */
+        display: inline-block;
+        position: relative;
+    }
+    .textbox {
+        display: flex;
+        overflow-y: scroll;
+        flex-direction:column;
+        position:absolute;
+        height: 90%;
+        bottom:10%;
+    }
+    .msg-text {
+        background-color:rgb(215, 233, 233);
+        margin: 10px;
+        margin-bottom: 0px;
+        display: inline-block; 
+        width: fit-content; 
+        border-radius: 10px;
+        padding: 10px;
+    }
+    .msg-right {
+        text-align: end;
+    }
+    .text-right {
+        background-color: rgb(233, 229, 223);
+        text-align: end;
+    }
+    #chat {
+        display: flex;
+        /* background-color: cadetblue; */
+        padding: 0px 10px;
+        padding-left: 20px;
+        width: 90%;
+        justify-content: end;
+        position:absolute;
+        bottom:0;
+    }
+    #textinput input[type="text"]{
+        display: flex;
+        width: 700px; 
+        max-width: 80%;
+        resize: both;
+    }
+    #button input[type="submit"] {
+    }
 </style>
 <div class="header">
     <h3>Chatbot</h3>
     <div class="chatbot">
         <div class="textbox">
-            <p class="msg-text">Hello, <br> What question do you have for me?</p> 
+            <p class="msg-text">Hello, What question do you have for me?</p> 
             {% for i in range(0,arg1) %} 
-                <div class="pl-5">
-                    <p class="msg-text">{{arg2[i]}}</p> 
+                <div class="msg-right">
+                    <p class="msg-text text-right">{{arg2[i]}}</p> 
                 </div>
-                <p class="msg-text mr-2" >{{arg0[i]}}</p> 
+                <p class="msg-text" >{{arg0[i]}}</p> 
             {% endfor %}        
         </div>
         <form id="chat" action="#" method="post" onsubmit="submitForm();">
-            <p >
+            <p id="textinput">
                 <input type="text" id="qns" name="qns" onkeydown="checkEnter(event)" autofocus>
             </p>
-            <p><input class="btn btn-primary" type="submit" value="submit"></p>
+            <p id="button"><input class="btn" type="submit" value="submit"></p>
         </form>                
      </div>
 </div>
+
+<script>
+    function checkEnter(event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        submitForm();
+      }
+    }
+    function submitForm() {
+        document.getElementById("chat").submit();
+        document.getElementById("qns").focus();
+    }
+  </script>
 
 {% endblock %}
