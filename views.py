@@ -16,5 +16,9 @@ def tests():
 
 @views.route("/info")
 def info():
+<<<<<<< HEAD
     return render_template("info.html")
 
+=======
+    return render_template("info.html")
+>>>>>>> 29fb28e74f18cc99da72a80efd23ce1c98807698
