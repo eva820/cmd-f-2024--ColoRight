@@ -17,3 +17,7 @@ def tests():
 @views.route("/base")
 def bases():
     return render_template("base.html")
+
+@views.route("/info")
+def info():
+    return render_template("info.html")

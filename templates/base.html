@@ -1,28 +1,163 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <style>
+      body {
+        font-family: Verdana, Geneva, Tahoma, sans-serif
+      }
+    </style>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>coloright</title>
-
-    <nav>
-        <div class="navBar-container">
-            <ul>
-                <li><a href="/">Home Page</a></li>
-                <li><a href="/plots">Changing Plots</a></li>
-                <li><a href="/test">Testing</a></li>
-            </ul>
-        </div>
-    </nav>
+    
   </head>
   <body>
-    <br/>
-    <!--page content-->
-    <div class="container">
-    {% block content %}
-    {% endblock %}  
-    </div>  
+    <head>
+      <style>
+          body {
+              font-family: Verdana, Geneva, Tahoma, sans-serif;
+              flex-direction: column;
+              min-height: 100vh;
+              margin: 0;
+          }
+          ul {
+              list-style: none;
+              margin-left: -20px;
+          }
+          ul li {
+              margin-bottom: 20px;
+          }
+          
+          /* unvisited link */
+          a:link {
+              color: white;
+              text-decoration: none;
+          }
+          
+          /* visited link */
+          a:visited {
+              color: white;
+              text-decoration: none;
+          }
+          
+          /* mouse over link */
+          a:hover {
+              color: white;
+              text-decoration: underline;
+          }
+          
+          /* selected link */
+          a:active {
+              color: white;
+              text-decoration: underline;
+          }
+          
+          /* grid container */
+          .holy-grail-grid {
+              display:grid;
+              grid-template-areas:
+                  'header'
+                  'main-content'
+                  'left-sidebar'
+                  'right-sidebar'
+                  'footer';
+          }
+  
+          /* general column padding */
+          .holy-grail-grid > * {
+              padding:1rem;
+          }
+          /* assign columns to grid areas */
+          .holy-grail-grid > .header {
+              grid-area:header;
+              background:#3266cc;
+              color: white;
+              text-align: center;
+              padding: 0;
+          }
+          .holy-grail-grid > .main-content {
+              grid-area:main-content;
+              background:#fff;
+              height: 578px;
+              width: 900px;
+          }
+          .holy-grail-grid > .left-sidebar {
+              grid-area:left-sidebar;
+              background-color:#3266cc;
+              color: white;
+              border-radius: 20px;
+              margin: 15px;   
+              padding-left: 50px;
+              box-shadow: 5px 5px 5px #23478f;
+          }
+          .holy-grail-grid > .right-sidebar {
+              grid-area:right-sidebar;
+              background:#3266cc;
+              margin: 15px;
+              color: white;
+              border-radius: 20px;
+              box-shadow: 5px 5px 5px #23478f;
+          }
+          .holy-grail-grid > .footer {
+              grid-area:footer;
+              background:#3266cc;
+              color: white;
+              font-size: 0.7em;
+              padding: 18.5px;
+          }
+  
+          /* tablet breakpoint */
+          @media (min-width:768px) {
+              .holy-grail-grid {
+                  grid-template-columns: 1fr 1fr;
+                  grid-template-areas:
+                      'header header'
+                      'main-content main-content'
+                      'left-sidebar right-sidebar'
+                      'footer footer';
+              }
+          }
+  
+          /* desktop breakpoint */
+          @media (min-width:1024px) {
+              .holy-grail-grid {
+                  grid-template-columns: repeat(4, 1fr);
+                  grid-template-areas:
+                      'header header header header'
+                      'left-sidebar main-content main-content right-sidebar'
+                      'footer footer footer footer';
+              }
+          }
+      </style>
+      <title>coloright</title>    
+  </head>
+  <body>
+      <div class="holy-grail-grid">
+          <header class="header">
+          <h2>Coloright</h2>
+          </header>
+          <main class="main-content">
+              {% block content %}
+              
+              {% endblock %}
+          </main>
+          <section class ="left-sidebar">
+              <h3 style="margin-bottom: 40px;">Navigation</h3>
+          <ul>
+              <li><a href="/">Home Page</a></li>
+              <li><a href="/plots">Changing Plots</a></li>
+              <li><a href="/test">Testing</a></li>
+              <li><a href="/info">Information Page</a></li>
+          </ul>
+          </section>
+          <aside class="right-sidebar">
+              <h3 style="text-align: center;">Chatbot</h3>
+              <div style="background: white;">
+                  
+              </div>
+          </aside>
+          <footer class="footer"> ʕ·ᴥ·ʔ Made for cmd-f 2024 by Jenny Sun, Eva Jiang, Elin Lee, and Ellie Hu</footer>   
+      </div>
   </body>
 </html>
-
