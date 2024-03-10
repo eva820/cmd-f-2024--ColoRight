@@ -27,7 +27,7 @@ def processImg(base64_image):
 
     rect_contours = []
     width = 2.6
-    while len(rect_contours)==0:
+    while len(rect_contours)==0 and width>2.0:
         width = width-0.1
         for contour in contours:
             area = cv2.contourArea(contour)
@@ -44,6 +44,8 @@ def processImg(base64_image):
                         rect_contours.append(approx)
     cv2.drawContours(image, rect_contours, -1, (0, 255, 0), 2)
     resized_image = cv2.resize(image, (image.shape[1] // 2, image.shape[0] // 2))
+    if len(rect_contours)==0:
+        return base64_image
     grid = rect_contours[0]
 
     box = [np.min(grid[:,0,1]), np.max(grid[:,0,1]),np.min(grid[:,0,0]),np.max(grid[:,0,0])]
