@@ -4,7 +4,7 @@ import matplotlib.colors as mcolors
 from skimage import io
 from skimage.color import rgb2lab, deltaE_cie76
 
-for i in range(1,2):
+for i in range(7,8):
     filepath = f'map{i}.png'
     image = cv2.imread(filepath)
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)

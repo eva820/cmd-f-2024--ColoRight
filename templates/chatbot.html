@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="header">
+    <h3>Mock chatbot!</h3>
+    <div >
+        <div>
+            <p class="p-2">Hello, <br> What question do you have for me?</p> 
+            {% for i in range(0,arg1) %} 
+                <div class="pl-5">
+                    <p class="p-2">{{arg2[i]}}</p> 
+                </div>
+                <p class="p-2 mr-2" >{{arg0[i]}}</p> 
+            {% endfor %}        
+        </div>
+        <form id="chat" action="#" method="post" onsubmit="submitForm();">
+            <p >
+                <input type="text" id="qns" name="qns" onkeydown="checkEnter(event)" autofocus>
+            </p>
+            <p><input class="btn btn-primary" type="submit" value="submit"></p>
+        </form>                
+     </div>
+</div>
+
+{% endblock %}
