@@ -6,31 +6,37 @@
     <h3>Ishihara Test</h3>
 </div> -->
 
-<html>
-<head>
-    <style>
-        .header h3 {
-            text-align: center;
-            font-size: 1.5rem;
-        }
-    </style>
-</head>
-<body>
+<style>
+    .header h3 {
+        text-align: center;
+        font-size: 1.5rem;
+    }
+    .main-container {
+        /* background-color: wheat; */
+        justify-content: center;
+        align-items: center; /* Add this line to center items vertically */
+        display: flex;
+        flex-direction: column;
+    }
+    .testContainer{
+        display: flex;
+        flex-direction: column;
+    }
 
-<div class="header">
-    <h3>Ishihara Test</h3>
-</div>
-
-</body>
-</html>
-
-<div id="testContainer">
-    <!-- Single img element for displaying images -->
-    <img src="" alt="Ishihara Test Image" id="ishiharaImage" width="400" height="400">
-    <input type="text" id="userAnswer" placeholder="Enter your answer here">
-    <button onclick="submitAnswer()">Submit</button>
-    <div id="feedback"></div>
-    <button onclick="nextImage()">Next</button>
+</style>
+<div class="main-container">
+    <div class="header">
+        <h3>Ishihara Test</h3>
+    </div>
+    
+    <div id="testContainer">
+        <!-- Single img element for displaying images -->
+        <img src="" alt="Ishihara Test Image" id="ishiharaImage" width="400" height="400">
+        <input type="text" id="userAnswer" placeholder="Enter your answer here">
+        <button onclick="submitAnswer()">Submit</button>
+        <div id="feedback"></div>
+        <button onclick="nextImage()">Next</button>
+    </div>
 </div>
 
 <script>
