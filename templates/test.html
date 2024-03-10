@@ -7,7 +7,8 @@
 </div>
 
 <div id="testContainer">
-    <img src="" alt="Ishihara Test Image" id="ishiharaImage">
+    <!-- Single img element for displaying images -->
+    <img src="" alt="Ishihara Test Image" id="ishiharaImage" width="400" height="400">
     <input type="text" id="userAnswer" placeholder="Enter your answer here">
     <button onclick="submitAnswer()">Submit</button>
     <div id="feedback"></div>
@@ -16,14 +17,40 @@
 
 <script>
     let currentImageIndex = 0;
-    const images = [
-        'path/to/your/image1.png',
-        'path/to/your/image2.png',
+    const images1 = [
+        "{{ url_for('static', filename='images/color_7.jpg') }}",
+        "{{ url_for('static', filename='images/color_12.jpg') }}",
+        "{{ url_for('static', filename='images/color_29.jpg') }}",
+        "{{ url_for('static', filename='images/color_74.jpg') }}",
+        "{{ url_for('static', filename='images/color_73.jpg') }}",
+        "{{ url_for('static', filename='images/color_45.jpg') }}",
+        "{{ url_for('static', filename='images/color_15.jpg') }}",
+        "{{ url_for('static', filename='images/color_8.jpg') }}",
+        "{{ url_for('static', filename='images/color_6.jpg') }}",
+        "{{ url_for('static', filename='images/color_26.jpg') }}",
+        "{{ url_for('static', filename='images/color_5.jpg') }}",
+        "{{ url_for('static', filename='images/color_3.jpg') }}",
+        "{{ url_for('static', filename='images/color_42.jpg') }}",
+        "{{ url_for('static', filename='images/color_16.jpg') }}",
+        "{{ url_for('static', filename='images/color_5_v2.jpg') }}"
         // Add more image paths here
     ];
     const answerKey = [
-        { number: '12', description: 'Description for image 1' },
-        { number: '8', description: 'Description for image 2' },
+        { number: '7', description: 'Description for image color_7' },
+        { number: '12', description: 'Description for image color_12' },
+        { number: '29', description: 'Description for image color_29' },
+        { number: '74', description: 'Description for imagse color_74' },
+        { number: '73', description: 'Description for imagse color_73' },
+        { number: '45', description: 'Description for imagse color_45' },
+        { number: '45', description: 'Description for imagse color_15' },
+        { number: '45', description: 'Description for imagse color_8' },
+        { number: '45', description: 'Description for imagse color_6' },
+        { number: '45', description: 'Description for imagse color_26' },
+        { number: '45', description: 'Description for imagse color_5' },
+        { number: '45', description: 'Description for imagse color_3' },
+        { number: '45', description: 'Description for imagse color_42' },
+        { number: '45', description: 'Description for imagse color_16' },
+        { number: '45', description: 'Description for imagse color_5_v2' }
         // Add more answers with descriptions here
     ];
 
@@ -34,6 +61,8 @@
     function loadImage() {
         const imgElement = document.getElementById('ishiharaImage');
         imgElement.src = images[currentImageIndex];
+        // Optionally, update alt text for accessibility
+        imgElement.alt = "Ishihara Test Image " + (currentImageIndex + 1);
     }
 
     function submitAnswer() {
@@ -42,11 +71,39 @@
         if (userAnswer === answerKey[currentImageIndex].number) {
             feedbackElement.textContent = 'Correct! ' + answerKey[currentImageIndex].description;
         } else {
-            feedbackElement.textContent = 'Wrong. ' + answerKey[currentImageIndex].description;
+            feedbackElement.textContent = 'Wrong. The correct answer is ' + answerKey[currentImageIndex].number + '. ' + answerKey[currentImageIndex].description;
         }
     }
 
+    var i = 0, images = ["static/color_7.jpg",
+                         "static/color_12.jpg",
+                         "static/color_29.jpg",
+                         "static/color_74.jpg",
+                         "static/color_73.jpg",
+                         "static/color_45.jpg",
+                         "static/color_15.jpg",
+                         "static/color_8.jpg",
+                         "static/color_6.jpg",
+                         "static/color_26.jpg",
+                         "static/color_5.jpg",
+                         "static/color_3.jpg",
+                         "static/color_42.jpg",
+                         "static/color_16.jpg",
+                         "static/color_5_v2.jpg",
+                        ] 
+
     function nextImage() {
+         if (currentImageIndex === 'next')
+        { 
+            i++;
+            if (i === images.length) { i = images.length - 1}
+        } else {
+            i--;
+            if (i > 0) { i = 0; }
+        }
+
+         document.getElementById('ishiharaImage').src = images[i];
+
         currentImageIndex++;
         if (currentImageIndex >= images.length) {
             alert('You have reached the end of the test.');

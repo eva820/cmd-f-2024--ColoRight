@@ -36,6 +36,10 @@ def strangers():
 def tests():
     return render_template("test.html")
 
+@views.route("/base")
+def bases():
+    return render_template("base.html")
+
 @views.route("/info")
 def info():
     return render_template("info.html")
