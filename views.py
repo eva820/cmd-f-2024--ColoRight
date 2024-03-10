@@ -14,3 +14,7 @@ def plots():
 def tests():
     return render_template("test.html")
 
+@views.route("/info")
+def info():
+    return render_template("info.html")
+
