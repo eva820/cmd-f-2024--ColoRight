@@ -21,34 +21,45 @@
             min-height: 100vh;
             margin: 0;
         }
-        ul {
-            list-style: none;
-            margin-left: -20px;
-        }
-        ul li {
-            margin-bottom: 20px;
-        }
         
+        button {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            background: #adc2eb;
+            color: black;
+            border-radius: 20px;
+            padding: 5px;
+            padding-left: 15px;
+            padding-right: 15px;
+            border: none;
+            transition: box-shadow .3s;
+            margin-top: 20px;
+            margin-left: -5px;
+        }
+
+        button:hover {
+            box-shadow: 0px 0px 10px #0a1429;
+        }
+
         /* unvisited link */
-        a:link {
+        a.nav:link {
             color: white;
             text-decoration: none;
         }
         
         /* visited link */
-        a:visited {
+        a.nav:visited {
             color: white;
             text-decoration: none;
         }
         
         /* mouse over link */
-        a:hover {
+        a.nav:hover {
             color: white;
             text-decoration: underline;
         }
         
         /* selected link */
-        a:active {
+        a.nav:active {
             color: white;
             text-decoration: underline;
         }
@@ -76,7 +87,6 @@
             color: white;
         }
 
-        @media (min-width: 768px) {
         .HolyGrail-body {
             flex-direction: row;
             flex: 1;
@@ -95,6 +105,7 @@
             background: #3266cc;
             color: white;
             transition: box-shadow .3s;
+            flex: 0 0 13em;
         }
 
         .HolyGrail-nav:hover {
@@ -107,6 +118,7 @@
             margin: 10px;
             padding: 10px;
             border-radius: 20px;
+            flex: 0 0 13em;
             animation: popout 1s ease;
             -webkit-animation: popout 1s ease;
         }
@@ -128,12 +140,6 @@
             color: white;
             font-size: 12px;
         }
-
-        .HolyGrail-nav, .HolyGrail-ads {
-            /* 12em is the width of the columns */
-            flex: 0 0 13em;
-        }
-        }
       </style>
       <title>coloright</title>    
   </head>
@@ -146,15 +152,16 @@
           <main class="HolyGrail-content">
             {% block content %}
             
-            {% endblock %}</main>
+            {% endblock %}
+        </main>
           <nav class="HolyGrail-nav" style="padding-left: 20px;">
             <h3 style="margin-bottom: 40px;">Navigation</h3>
-            <ul>
-                <li><a href="/">Home Page</a></li>
-                <li><a href="/plots">Changing Plots</a></li>
-                <li><a href="/test">Testing</a></li>
-                <li><a href="/info">Information Page</a></li>
-                <li><a href="/chatbot">chat bot</a></li>
+            <ul style="list-style: none; margin-left: -20px;">
+                <li style="margin-bottom: 20px;"><a href="/" class="nav">Home Page</a></li>
+                <li style="margin-bottom: 20px;"><a href="/plots" class="nav">Changing Plots</a></li>
+                <li style="margin-bottom: 20px;"><a href="/test" class="nav">Testing</a></li>
+                <li style="margin-bottom: 20px;"><a href="/info" class ="nav">Information Page</a></li>
+                <button>Ask me anything!</button>
             </ul>
           </nav>
           <aside class="HolyGrail-ads">
