@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, jsonify
 from processImage import processImg
 
 views = Blueprint(__name__, "views")
+retImg = ''
 
 @views.route("/")
 def home():
@@ -9,28 +10,20 @@ def home():
 
 @views.route("/plots", methods = ['POST','GET'])
 def plots():
+    global retImg
     if request.method == 'POST':
         img = request.form['imageData']
         # print(img)
-        retimg = processImg(img)
+        retImg = processImg(img)
         # print(retimg)
-        return render_template("plots.html", argImg = retimg)
+        return render_template("plots.html",retImg = '')
     else:
-        return render_template("plots.html",argImg = '')
+        return render_template("plots.html",retImg = '')
 
-@views.route("/strangers", methods = ['POST','GET'])
-def strangers():
-    global resp, msgcount, msgLst
-    if request.method == 'POST':
-        msg = request.form['qns']
-        if len(resp)==0 or msg!=msgLst[-1]:
-            msgLst.append(msg)
-            resp.append(getReturnMsg(msg))
-            msgcount = msgcount+1
-        return render_template("strangers.html", arg0=resp, arg1 = msgcount, arg2 = msgLst)
-    else:
-        return render_template("strangers.html", arg0=resp, arg1 = msgcount, arg2 = msgLst)
-
+@views.route('/get_image_data')
+def get_image_data():
+    image_data = retImg
+    return jsonify(image_data=image_data)
 
 @views.route("/test")
 def tests():

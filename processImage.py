@@ -26,27 +26,26 @@ def processImg(base64_image):
     max_epsilon = 0.03
 
     rect_contours = []
-    for contour in contours:
-        area = cv2.contourArea(contour)
-        if min_area < area < max_area:
-            perimeter = cv2.arcLength(contour, True)
-            epsilon = max_epsilon * perimeter
-            approx = cv2.approxPolyDP(contour, epsilon, True)
-            if len(approx) == 4:  # Check if the contour is a quadrilateral
-                dist1 = np.linalg.norm(approx[1]-approx[2])
-                dist2 = np.linalg.norm(approx[0]-approx[3])
-                dist3 = np.linalg.norm(approx[0]-approx[1])
-                dist4 = np.linalg.norm(approx[2]-approx[3])
-                if abs(dist2-dist1)<=dist1*0.2 and abs(dist4-dist3)<=dist4*0.2 and (max(dist4,dist2)/min(dist4,dist2) > 2.5):
-                    rect_contours.append(approx)
+    width = 2.6
+    while len(rect_contours)==0:
+        width = width-0.1
+        for contour in contours:
+            area = cv2.contourArea(contour)
+            if min_area < area < max_area:
+                perimeter = cv2.arcLength(contour, True)
+                epsilon = max_epsilon * perimeter
+                approx = cv2.approxPolyDP(contour, epsilon, True)
+                if len(approx) == 4:  # Check if the contour is a quadrilateral
+                    dist1 = np.linalg.norm(approx[1]-approx[2])
+                    dist2 = np.linalg.norm(approx[0]-approx[3])
+                    dist3 = np.linalg.norm(approx[0]-approx[1])
+                    dist4 = np.linalg.norm(approx[2]-approx[3])
+                    if abs(dist2-dist1)<=dist1*0.2 and abs(dist4-dist3)<=dist4*0.2 and (max(dist4,dist2)/min(dist4,dist2) > width):
+                        rect_contours.append(approx)
     cv2.drawContours(image, rect_contours, -1, (0, 255, 0), 2)
     resized_image = cv2.resize(image, (image.shape[1] // 2, image.shape[0] // 2))
-    # cv2.imshow('Rectangular Contours', resized_image)
-    # cv2.waitKey(0)
-    # cv2.destroyAllWindows()
-
-    # show the cropped color bar
     grid = rect_contours[0]
+
     box = [np.min(grid[:,0,1]), np.max(grid[:,0,1]),np.min(grid[:,0,0]),np.max(grid[:,0,0])]
 
     image = oriimage.copy()
@@ -122,15 +121,8 @@ def processImg(base64_image):
         if sum(colorLine[i])<250*3:
             rgb[colorDist<thres] = cmap[i]
 
-    # io.imshow(rgb)
-    # io.show()
-    # print(rgb)
     bgr = cv2.cvtColor(rgb, cv2.COLOR_BGR2RGB)
-    # cv2.imshow('rb',bgr)
-    # cv2.waitKey(0)
-    # cv2.destroyAllWindows()
     _, buffer = cv2.imencode('.jpg', bgr)
     output_base64 = base64.b64encode(buffer).decode()
-    # print(output_base64)
     return output_base64
             

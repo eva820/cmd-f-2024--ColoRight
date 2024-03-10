@@ -21,14 +21,22 @@
         <!-- <img id="trainingImgs" src="../trainingImgs/map1.png" alt="test image"> -->
         <form class="form-img" id="img-form" action="#" method="post" onsubmit="submitForm();">
             <div id="image-container">
-                <img id="pasted-image" src="{{argImg}}" alt="Pasted Image">
+                <!-- <img id="pasted-image" src="../static/showImg.jpg" alt="Pasted Image"> -->
+                <img id="pasted-image" src="" alt="Pasted Image">
             </div>
             <input type="text" id="imageData" name="imageData"> <!-- Hidden input for image data -->
             <!-- <input type="image" name="pasted-image" id="pasted-image" src="#" alt="Pasted Image"> -->
             <p><input class="btn btn-primary" type="submit"value="submit"></p>
         </form> 
     </div>
-
+<script>
+        fetch('/get_image_data')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('pasted-image').src = "data:image/png;base64," + data.image_data;
+            })
+            .catch(error => console.error('Error fetching image data:', error));
+    </script>
     <script>
         
         function processImage() {
