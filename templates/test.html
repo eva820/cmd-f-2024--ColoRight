@@ -7,7 +7,11 @@
 </div>
 
 <div id="testContainer">
-    <img src="" alt="Ishihara Test Image" id="ishiharaImage">
+    <!-- Single img element for displaying images -->
+    <img src="/static/color_3.jpg" alt="Ishihara Test Image" id="ishiharaImage">
+    <!-- <img src="/static/color_12.jpg" alt="Ishihara Test Image" id="ishiharaImage">
+    <img src="/static/color_29.jpg" alt="Ishihara Test Image" id="ishiharaImage">
+    <img src="/static/color_74.jpg" alt="Ishihara Test Image" id="ishiharaImage"> -->
     <input type="text" id="userAnswer" placeholder="Enter your answer here">
     <button onclick="submitAnswer()">Submit</button>
     <div id="feedback"></div>
@@ -16,14 +20,18 @@
 
 <script>
     let currentImageIndex = 0;
-    const images = [
-        'path/to/your/image1.png',
-        'path/to/your/image2.png',
+    const images1 = [
+        "{{ url_for('static', filename='images/color_7.jpg') }}",
+        "{{ url_for('static', filename='images/color_12.jpg') }}",
+        "{{ url_for('static', filename='images/color_29.jpg') }}",
+        "{{ url_for('static', filename='images/color_74.jpg') }}",
         // Add more image paths here
     ];
     const answerKey = [
-        { number: '12', description: 'Description for image 1' },
-        { number: '8', description: 'Description for image 2' },
+        { number: '3', description: 'Description for image color_3' },
+        { number: '12', description: 'Description for image color_12' },
+        { number: '29', description: 'Description for image color_29' },
+        { number: '74', description: 'Description for image color_74' },
         // Add more answers with descriptions here
     ];
 
@@ -34,6 +42,8 @@
     function loadImage() {
         const imgElement = document.getElementById('ishiharaImage');
         imgElement.src = images[currentImageIndex];
+        // Optionally, update alt text for accessibility
+        imgElement.alt = "Ishihara Test Image " + (currentImageIndex + 1);
     }
 
     function submitAnswer() {
@@ -42,11 +52,27 @@
         if (userAnswer === answerKey[currentImageIndex].number) {
             feedbackElement.textContent = 'Correct! ' + answerKey[currentImageIndex].description;
         } else {
-            feedbackElement.textContent = 'Wrong. ' + answerKey[currentImageIndex].description;
+            feedbackElement.textContent = 'Wrong. The correct answer is ' + answerKey[currentImageIndex].number + '. ' + answerKey[currentImageIndex].description;
         }
     }
 
+    var i = 0, images = ["static/color_7.jpg",
+                         "static/color_12.jpg",
+                         "static/color_29.jpg",
+                         "static/color_74.jpg"] 
+
     function nextImage() {
+         if (currentImageIndex === 'next')
+        { 
+            i++;
+            if (i === images.length) { i = images.length - 1}
+        } else {
+            i--;
+            if(i > 0) { i = 0; }
+        }
+
+         document.getElementById('ishiharaImage').src = images[i];
+
         currentImageIndex++;
         if (currentImageIndex >= images.length) {
             alert('You have reached the end of the test.');
@@ -57,5 +83,18 @@
         document.getElementById('feedback').textContent = ''; // Clear the feedback
     }
 </script>
+
+<!-- </head>
+<body>
+
+    <div>
+        <img src="../images/color_3.jpg" id="ishiharaImage" alt="" width="400" height="200">
+        <button onclick="nextImage('prev');"><</button>
+        <button onclick="nextImage('next');">></button>"
+        <input type="text" id="userAnswer" placeholder="Enter your answer here">
+        <button onclick="submitAnswer()">Submit</button>
+        <div id="feedback"></div>
+    </div>
+</body> -->
 
 {% endblock %}
