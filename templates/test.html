@@ -32,11 +32,22 @@
     <div id="testContainer">
         <!-- Single img element for displaying images -->
         <img src="" alt="Ishihara Test Image" id="ishiharaImage" width="400" height="400">
-        <input type="text" id="userAnswer" placeholder="Enter your answer here">
-        <button onclick="submitAnswer()">Submit</button>
-        <div id="feedback"></div>
+    </div>
+    <div>
+        <input style = "margin-right: 10px; border-radius: 20px; padding: 5px; padding-left: 10px;" type="text" id="userAnswer" placeholder="Enter your answer here">
         <button onclick="nextImage()">Next</button>
     </div>
+    <div style="margin-bottom: 20px;">
+        <button onclick="submitAnswer()">Submit</button>
+    </div>
+    <div id="feedback"></div>
+</div>
+<div>
+    <h3 style="text-align: center;">Professional Diagnosis</h3>
+    <p style="margin-left: 20px;">
+        It may be tricky to diagnose colourblindness. 
+        If you suspect that you have colour deficiency, please seek a healthcare provider or an eye specialist for a professional diagnosis.
+    </p>
 </div>
 
 <script>
