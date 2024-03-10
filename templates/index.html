@@ -25,11 +25,10 @@
         gap: 20px; /* Gap between grid items */
         justify-content: center; /* Center grid items horizontally */
     }
-
     .rounded-box {
         border-radius: 20px; /* Rounded corners */
         border: 10px solid #fdfdfd0a; /* Border */
-        padding: 10px 30px; /* Padding */
+        padding: 10px 20px; /* Padding */
         text-align: center; /* Center content */
         background-color: #a2b5dc30; /* Add background color */
         overflow: auto; /* Enable scrollbars if content overflows*/
@@ -38,8 +37,8 @@
     .rounded-box video {
         padding: 5px 10px; /* Adjust the padding as needed */
         grid-template-columns: repeat(autofit, minmax(300px, 1fr));
-        max-width: calc(100% - 40px); /* Account for horizontal padding */
-        max-height: calc(100% - 40px); /* Account for vertical padding */
+        max-width: calc(100% - 20px); /* Account for horizontal padding */
+        max-height: calc(100% - 20px); /* Account for vertical padding */
     }
 
 </style>
@@ -54,49 +53,49 @@
     <!-- Content to be centered -->
 
     <div class="rounded-box">
-        <h1>Learn About Colour Blindness</h1>
+        <h1>Learn About Color Blindness</h1>
         <div style="display: flex; justify-content: center">
             <!-- Content to be horizontally centered -->
-            <img src="logo.png" alt="info image 1" style="max-width: 100%;"/>
+            <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/4nuvM6QSKbQ?si=7kcMvK6Diem0NWBz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
-        <p>Check out the information page to learn about what causes color blindness and how it impacts daily life!</p>        
+        <p>Check out the information page to learn about what causes color blindness and how it impacts daily life!</p>  
+        <p>Color blindness is a prevalent condition many people face that is not as discussed as other accessibility issues. Our Coloright team believes it is important to address the lack of awareness around color blindness and a few common misconceptions. People who have this condition are often overlooked and not properly accommodated.</p>       
     </div>
 
     <div class="rounded-box">
-        <h1>Make Your Images Colour-Friendly</h1>
-        <div style="display: flex; justify-content: center;">
-            <!-- Content to be horizontally centered -->
-            <img src="logo.png" alt="plots image 1" style="max-width: 100%;"/>
+        <h1>Make Your Images Color-Friendly</h1>
+        <div style="display: flex; justify-content:center;">
+            <!-- First centered image -->
+            <img src="static/main_page_original_map.jpg" alt="plots image 1" style="max-width: 100%;"/>
         </div>
-        <p>Check out this page to transform your images and graphs into colour-friendly graphics!</p>        
+        <div style="display: flex; justify-content:center;">
+            <!-- Second centered image -->
+            <img src="static/main_page_recolored_map.jpg" alt="plots image 2" style="max-width: 100%;"/>
+        </div>
+        <p>Check out this page to transform your images and graphs into color-friendly graphics!</p>        
     </div>
 
     <div class="rounded-box">
         <h1>Take the Ishihara Test</h1>
         <div style="display: flex; justify-content: center;">
             <!-- Content to be horizontally centered -->
-            <img src="logo.png" alt="test image 1" style="max-width: 100%;"/>
+            <img src="static/main_page_12.jpg" alt="test image 1" style="max-width: 100%;"/>
         </div>
-        <p>Test your colour vision with this simple test!</p>        
+        <p>Test your color vision with this simple test!</p>   
+        <p>The Ishihara Test is a popular and dependable self-testing activity to determine whether you may have color blindness. All you have to do is find the number hidden among dots of color!</p>       
     </div>
 
     <div class="rounded-box">
-        <h1>Generate Alternative Text for Your Images</h1>
+        <h1>Talk to Our Chatbot</h1>   
         <div style="display: flex; justify-content: center;">
             <!-- Content to be horizontally centered -->
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/HwSv6NsqDWM" frameborder="0" allowfullscreen></iframe>
-
-        </div>
-        <p>Input an image and get alternative text!</p>        
+            <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/4nuvM6QSKbQ?si=7kcMvK6Diem0NWBz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>  
+        <p>Ask our chatbot any questions! &nbsp;&nbsp; -----></p>   
+        <p>CREDIT COHERE: ... </p>  
     </div>
 
 </div>
 
-<div class="video spotlight" style="justify-content: center; margin: 20px;">
-    <video controls class="demo video" style="margin: 10px; justify-content: center;">
-        <source src="https://www.youtube.com/watch?v=CA5YRDdyu90" type="video/mp4">
-        Your browser does not support the video tag :/
-    </video>
-</div>
 
 {% endblock %}

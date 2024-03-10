@@ -1,0 +1,44 @@
+        .forum{
+            width: 100%;
+            height: 100%;
+            vertical-align: bottom;
+            /* background-color: antiquewhite; */
+            display: inline-block;
+            position: relative;
+
+        }
+
+        .textbox-forum {
+            width: 100%;
+            display: flex;
+            overflow-y: scroll;
+            flex-direction:column;
+            position:absolute;
+            height: 90%;
+            bottom:10%;
+        }
+
+        .forum-text {
+            background-color:rgb(215, 233, 233);
+            margin: 10px;
+            margin-bottom: 0px;
+            display: inline-block; 
+            width: fit-content; 
+            border-radius: 10px;
+            padding: 10px;
+        }
+        #chat-forum {
+            display: flex;
+            /* background-color: cadetblue; */
+            padding: 0px 10px;
+            padding-left: 20px;
+            width: 90%;
+            justify-content: end;
+            position:absolute;
+            bottom:0;
+        }
+        #textinput-forum input[type="text"]{
+            display: flex;
+            max-width: 80%;
+            resize: both;
+        }
