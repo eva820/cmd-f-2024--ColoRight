@@ -19,7 +19,6 @@ def plots():
         img = request.form['imageData']
         # print(img)
         retImg = processImg(img)
-        # print(retimg)
         return render_template("plots.html",retImg = '')
     else:
         return render_template("plots.html",retImg = '')
