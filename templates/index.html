@@ -1,9 +1,102 @@
+<style>
+    .main-container {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        text-align: center;
+        margin-top: 50px;
+    }
+    /* Change font size for specific elements */
+    .rounded-box h1 {
+        font-size: 18px; /* Adjust the font size as needed */
+    }
+    .rounded-box p {
+        font-size: 14px; /* Adjust the font size as needed */
+    }
+    #image-container {
+        margin: auto;
+        max-width: 80%;
+    }
+    img {
+        max-width: 100%;
+    }
+    .page.snapshots {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Two columns */
+        grid-template-rows: auto auto; /* Two rows with automatic height */
+        gap: 20px; /* Gap between grid items */
+        justify-content: center; /* Center grid items horizontally */
+    }
+
+    .rounded-box {
+        border-radius: 20px; /* Rounded corners */
+        border: 10px solid #fdfdfd0a; /* Border */
+        padding: 10px 30px; /* Padding */
+        text-align: center; /* Center content */
+        background-color: #a2b5dc30; /* Add background color */
+        overflow: auto; /* Enable scrollbars if content overflows*/
+    }
+    .rounded-box img,
+    .rounded-box video {
+        padding: 5px 10px; /* Adjust the padding as needed */
+        grid-template-columns: repeat(autofit, minmax(300px, 1fr));
+        max-width: calc(100% - 40px); /* Account for horizontal padding */
+        max-height: calc(100% - 40px); /* Account for vertical padding */
+    }
+
+</style>
+
 {% extends 'base.html' %}
 
 {% block content %}
 
-<div class="header">
-    <h3>This is the main page</h3>
+<!-- Main content section -->
+
+<div class="page snapshots" style="text-align: center;">
+    <!-- Content to be centered -->
+
+    <div class="rounded-box">
+        <h1>Learn About Colour Blindness</h1>
+        <div style="display: flex; justify-content: center">
+            <!-- Content to be horizontally centered -->
+            <img src="logo.png" alt="info image 1" style="max-width: 100%;"/>
+        </div>
+        <p>Check out the information page to learn about what causes color blindness and how it impacts daily life!</p>        
+    </div>
+
+    <div class="rounded-box">
+        <h1>Make Your Images Colour-Friendly</h1>
+        <div style="display: flex; justify-content: center;">
+            <!-- Content to be horizontally centered -->
+            <img src="logo.png" alt="plots image 1" style="max-width: 100%;"/>
+        </div>
+        <p>Check out this page to transform your images and graphs into colour-friendly graphics!</p>        
+    </div>
+
+    <div class="rounded-box">
+        <h1>Take the Ishihara Test</h1>
+        <div style="display: flex; justify-content: center;">
+            <!-- Content to be horizontally centered -->
+            <img src="logo.png" alt="test image 1" style="max-width: 100%;"/>
+        </div>
+        <p>Test your colour vision with this simple test!</p>        
+    </div>
+
+    <div class="rounded-box">
+        <h1>Generate Alternative Text for Your Images</h1>
+        <div style="display: flex; justify-content: center;">
+            <!-- Content to be horizontally centered -->
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/HwSv6NsqDWM" frameborder="0" allowfullscreen></iframe>
+
+        </div>
+        <p>Input an image and get alternative text!</p>        
+    </div>
+
+</div>
+
+<div class="video spotlight" style="justify-content: center; margin: 20px;">
+    <video controls class="demo video" style="margin: 10px; justify-content: center;">
+        <source src="https://www.youtube.com/watch?v=CA5YRDdyu90" type="video/mp4">
+        Your browser does not support the video tag :/
+    </video>
 </div>
 
 {% endblock %}

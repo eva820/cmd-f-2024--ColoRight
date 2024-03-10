@@ -17,13 +17,40 @@
 {% block content %}
     <div class="main-container">
         <h1>Paste Your Image Here</h1>
-        <img id="trainingImgs" src="../trainingImgs/map1.png" alt="test image">
-        <div id="image-container">
-            <img id="pasted-image" src="#" alt="Pasted Image">
-        </div>
+        <!-- <button id="myButton" class="process-image" onclick="processImage()">Process Image</button> -->
+        <!-- <img id="trainingImgs" src="../trainingImgs/map1.png" alt="test image"> -->
+        <form class="form-img" id="img-form" action="#" method="post" onsubmit="submitForm();">
+            <p><input class="btn btn-primary" type="submit" value="recolor Image"></p>
+            <div id="image-container">
+                <!-- <img id="pasted-image" src="../static/showImg.jpg" alt="Pasted Image"> -->
+                <img id="pasted-image" src="" alt="Pasted Image">
+            </div>
+            <input type="hidden" id="imageData" name="imageData"> 
+        </form> 
     </div>
-
+<script>
+        fetch('/get_image_data')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('pasted-image').src = "data:image/png;base64," + data.image_data;
+            })
+            .catch(error => console.error('Error fetching image data:', error));
+    </script>
     <script>
+        
+        function processImage() {
+            var imageURL = document.getElementById('pasted-image').src;
+            document.getElementById('imageData').value = imageURL;
+            console.log(imageURL)
+            console.log('Image URL:', imageURL);
+        }
+        function submitForm() {
+            var imageURL = document.getElementById('pasted-image').src;
+            document.getElementById('imageData').value = imageURL;
+            console.log(imageURL)
+            console.log('Image URL:', imageURL);
+            document.getElementById("img-form").submit();
+        }
         document.addEventListener('paste', function(event) {
             var items = (event.clipboardData || event.originalEvent.clipboardData).items;
             for (var index in items) {
@@ -34,6 +61,7 @@
                     reader.onload = function(event){
                         var image = new Image();
                         image.src = event.target.result;
+                        image.id = 'pasted-image'
                         document.getElementById('image-container').innerHTML = '';
                         document.getElementById('image-container').appendChild(image);
                     };

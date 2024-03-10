@@ -2,12 +2,31 @@
 
 {% block content %}
 
+<!-- <div class="header">
+    <h3>Ishihara Test</h3>
+</div> -->
+
+<html>
+<head>
+    <style>
+        .header h3 {
+            text-align: center;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+
 <div class="header">
-    <h3>Testing page</h3>
+    <h3>Ishihara Test</h3>
 </div>
 
+</body>
+</html>
+
 <div id="testContainer">
-    <img src="" alt="Ishihara Test Image" id="ishiharaImage">
+    <!-- Single img element for displaying images -->
+    <img src="" alt="Ishihara Test Image" id="ishiharaImage" width="400" height="400">
     <input type="text" id="userAnswer" placeholder="Enter your answer here">
     <button onclick="submitAnswer()">Submit</button>
     <div id="feedback"></div>
@@ -16,14 +35,40 @@
 
 <script>
     let currentImageIndex = 0;
-    const images = [
-        'path/to/your/image1.png',
-        'path/to/your/image2.png',
+    const images1 = [
+        "{{ url_for('static', filename='images/color_7.jpg') }}",
+        "{{ url_for('static', filename='images/color_12.jpg') }}",
+        "{{ url_for('static', filename='images/color_29.jpg') }}",
+        "{{ url_for('static', filename='images/color_74.jpg') }}",
+        "{{ url_for('static', filename='images/color_73.jpg') }}",
+        "{{ url_for('static', filename='images/color_45.jpg') }}",
+        "{{ url_for('static', filename='images/color_15.jpg') }}",
+        "{{ url_for('static', filename='images/color_8.jpg') }}",
+        "{{ url_for('static', filename='images/color_6.jpg') }}",
+        "{{ url_for('static', filename='images/color_26.jpg') }}",
+        "{{ url_for('static', filename='images/color_5.jpg') }}",
+        "{{ url_for('static', filename='images/color_3.jpg') }}",
+        "{{ url_for('static', filename='images/color_42.jpg') }}",
+        "{{ url_for('static', filename='images/color_16.jpg') }}",
+        "{{ url_for('static', filename='images/color_5_v2.jpg') }}"
         // Add more image paths here
     ];
     const answerKey = [
-        { number: '12', description: 'Description for image 1' },
-        { number: '8', description: 'Description for image 2' },
+        { number: '7', description: 'Red-green deficiency: most people don’t see anything or see something wrong.' },
+        { number: '12', description: 'Everyone should see number 12.' },
+        { number: '29', description: 'Red-green deficiency: 70' },
+        { number: '74', description: 'Red-green deficiency: 21' },
+        { number: '73', description: 'Red-green deficiency: most people don’t see anything or see something wrong.' },
+        { number: '45', description: 'Red-green deficiency: most people don’t see anything or see something wrong.' },
+        { number: '15', description: 'Red-green deficiency: 17' },
+        { number: '8', description: 'Red-green deficiency: 3' },
+        { number: '6', description: 'Red-green deficiency: 5' },
+        { number: '26', description: 'Protanopia or protanomaly: 6 & Deuteranopia or deuteranomaly: 2' },
+        { number: '5', description: 'Red-green deficiency: 2' },
+        { number: '3', description: 'Red-green deficiency: 5' },
+        { number: '42', description: 'Protanopia or protanomaly: 2 & Deuteranopia or deuteranomaly: 4' },
+        { number: '16', description: 'Red-green deficiency: most people don’t see anything or see something wrong.' },
+        { number: '5', description: 'Red-green deficiency: most people don’t see anything or see something wrong.' }
         // Add more answers with descriptions here
     ];
 
@@ -34,6 +79,8 @@
     function loadImage() {
         const imgElement = document.getElementById('ishiharaImage');
         imgElement.src = images[currentImageIndex];
+        // Optionally, update alt text for accessibility
+        imgElement.alt = "Ishihara Test Image " + (currentImageIndex + 1);
     }
 
     function submitAnswer() {
@@ -42,11 +89,39 @@
         if (userAnswer === answerKey[currentImageIndex].number) {
             feedbackElement.textContent = 'Correct! ' + answerKey[currentImageIndex].description;
         } else {
-            feedbackElement.textContent = 'Wrong. ' + answerKey[currentImageIndex].description;
+            feedbackElement.textContent = 'Wrong. The correct answer is ' + answerKey[currentImageIndex].number + '. ' + answerKey[currentImageIndex].description;
         }
     }
 
+    var i = 0, images = ["static/color_7.jpg",
+                         "static/color_12.jpg",
+                         "static/color_29.jpg",
+                         "static/color_74.jpg",
+                         "static/color_73.jpg",
+                         "static/color_45.jpg",
+                         "static/color_15.jpg",
+                         "static/color_8.jpg",
+                         "static/color_6.jpg",
+                         "static/color_26.jpg",
+                         "static/color_5.jpg",
+                         "static/color_3.jpg",
+                         "static/color_42.jpg",
+                         "static/color_16.jpg",
+                         "static/color_5_v2.jpg",
+                        ] 
+
     function nextImage() {
+         if (currentImageIndex === 'next')
+        { 
+            i++;
+            if (i === images.length) { i = images.length - 1}
+        } else {
+            i--;
+            if (i > 0) { i = 0; }
+        }
+
+         document.getElementById('ishiharaImage').src = images[i];
+
         currentImageIndex++;
         if (currentImageIndex >= images.length) {
             alert('You have reached the end of the test.');
