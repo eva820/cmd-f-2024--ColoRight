@@ -50,5 +50,5 @@ We learned how to use Git and Github for version control to work as a team, whic
 - Addressing different types of colorblindness, more than just deuteranopia in order to improve inclusivity for all individuals who experience colorblindness.
 
 ## Links
-🗺️ [Presentation Pitch Slides Deck](https://www.canva.com/design/DAF_IojbSqU/HlQn3A-ntF68Bv_dDiYQAg/view?utm_content=DAF_IojbSqU&utm_campaign=designshare&utm_medium=link&utm_source=editor)  
+🗺️ [Presentation Pitch Slide Deck](https://www.canva.com/design/DAF_IojbSqU/HlQn3A-ntF68Bv_dDiYQAg/view?utm_content=DAF_IojbSqU&utm_campaign=designshare&utm_medium=link&utm_source=editor)  
 ⛵ [Video Demonstration](https://www.youtube.com/watch?v=6nN_T8pPFUI)
