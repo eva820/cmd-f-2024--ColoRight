@@ -1,6 +1,6 @@
 # ColoRight - a smart solution to spread greater awareness around color blindness and to provide a unique accessibility aid that recolors choropleth maps!
 [![image](https://github.com/eva820/cmd-f-2024--ColoRight/assets/125091369/410c1204-5cb1-4f82-b59c-a6b8fa15f4b0)](https://www.youtube.com/watch?v=6nN_T8pPFUI)  
-`Click the image above to watch the demonstration video!`
+`Welcome, viewer! Click the logo above to watch the demonstration video!`
 
 ## Inspiration
 
